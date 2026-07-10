@@ -6,6 +6,7 @@ A simple command-line backup tool written in Node.js. Recursively copies files a
 
 - Recursively copies files and folders, preserving directory structure
 - Creates the destination folder automatically if it doesn't exist
+- Dry run mode to preview what would be copied without writing anything
 
 > Verbose logging, copy summaries (file count, size, time taken), and archive compression are planned but not yet implemented.
 
@@ -22,16 +23,24 @@ npm install
 ## Usage
 
 ```bash
-node src/index.js <source> --to <destination>
+node src/backup.js <source> --to <destination> [options]
 ```
 
 ### Example
 
 ```bash
-node src/index.js ~/Documents --to ~/Backups
+node src/backup.js ~/Documents --to ~/Backups
 ```
 
 Copies everything inside `~/Documents` into `~/Backups`, recreating the same folder structure.
+
+### Dry run
+
+```bash
+node src/backup.js ~/Documents --to ~/Backups --dry-run
+```
+
+Shows what would be copied and which folders would be created, without touching the filesystem.
 
 ## Options
 
@@ -39,8 +48,20 @@ Copies everything inside `~/Documents` into `~/Backups`, recreating the same fol
 | -------------------- | ------------------------------------------------ |
 | `<source>`           | Path to the file or folder to back up (required) |
 | `--to <destination>` | Path to the backup destination (required)        |
+| `--dry-run`          | Preview the backup without copying any files     |
 | `-V, --version`      | Show the tool's version                          |
 | `-h, --help`         | Show help for all commands and options           |
+
+## Project Structure
+
+```
+├── node_modules/
+├── package.json
+├── package-lock.json
+├── README.md
+└── src/
+    └── backup.js
+```
 
 ## Requirements
 
